@@ -8,18 +8,28 @@
 
 int main()
 {
-	int n, i;
+	int n, i, nReq, req;
 	int arquivo;
 	lista *arquivos;
 	lista *p;
 	
-	scanf("%d",&n);	
+	scanf("%d %d",&n, &nReq);
 	
 	arquivos = init_lista(n);
+
+	for(i=0; i<nReq; i++)
+	{
+		scanf("%d",&req);
 		
-	mtf(4,5,arquivos);
+		printf("%d\n",tr(req,n,&arquivos));
+		
+		for(p=arquivos;p != NULL;p=p->prox)
+			printf("%d ",p->arq);
+			
+		printf("\n");
+	}
 	
-	printf("\n");
+	desaloca_lista(arquivos);
 	
 	return 0;
 }

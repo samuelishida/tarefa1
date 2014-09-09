@@ -19,15 +19,12 @@ struct lista{
 /*As tres funcoes da tarefa retornam o custo operacional*/
 
 /*Move-To-Front*/
-int mtf(int req, int n, lista *init);
+int mtf(int req, int n, lista **init);
 /* Transpose*/
-int tr(int req, int n, lista *init);
+int tr(int req, int n, lista **init);
 /*Frequency Count*/
-int fc(int req, int n, lista *init);
+int fc(int req, int n, lista **init);
 
-/*Funcoes para criar/modificar a lista*/
-
-/*Insere um elemento novo no final da lista*/
-void push_back(int n, lista *p);
 /*Retorna o ponteiro do primeiro elemento de uma lista de N elementos indo de 1 a N*/
 lista *init_lista(int n);
+void desaloca_lista(lista *init);
