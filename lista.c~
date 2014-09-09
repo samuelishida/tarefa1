@@ -63,7 +63,7 @@ int tr(int req, int n, lista **init)
 		atual->prox = aux;
 	}
 	
-	return i+1;
+	return i;
 }
 
 int fc(int req, int n, lista **init)
