@@ -17,8 +17,7 @@ int main()
 	
 	arquivos = init_lista(n);
 		
-	for(p = arquivos; p != NULL; p = p->prox)
-		printf("%d ",p->arq);
+	mtf(4,5,arquivos);
 	
 	printf("\n");
 	

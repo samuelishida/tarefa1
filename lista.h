@@ -19,11 +19,11 @@ struct lista{
 /*As tres funcoes da tarefa retornam o custo operacional*/
 
 /*Move-To-Front*/
-int mtf(int n, lista *init);
+int mtf(int req, int n, lista *init);
 /* Transpose*/
-int tr(int n, lista *init);
+int tr(int req, int n, lista *init);
 /*Frequency Count*/
-int fc(int n, lista *init);
+int fc(int req, int n, lista *init);
 
 /*Funcoes para criar/modificar a lista*/
 

@@ -8,17 +8,25 @@
 #include "lista.h"
 
 /*Implementacao das funcoes mtf, tr e fc*/
-int mtf(int n, lista *init)
+int mtf(int req, int n, lista *init)
+{
+	int i;
+	lista *p = init;
+	
+	for(i=0; p->prox->arq != req; i++)
+		p = p->prox;
+		
+	printf("%d\n",p->arq);
+	
+	return 0;
+}
+
+int tr(int req, int n, lista *init)
 {
 	
 }
 
-int tr(int n, lista *init)
-{
-	
-}
-
-int fc(int n, lista *init)
+int fc(int req, int n, lista *init)
 {
 	
 }
