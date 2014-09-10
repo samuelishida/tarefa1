@@ -9,30 +9,30 @@
 int main()
 {
 	int n, i, nReq, req, fc_count, tr_count, mtf_count;
-	lista *arq1, *arq2, *arq3;
+	lista *arq[3];
 	
 	fc_count = tr_count = mtf_count = 0;
 	
 	scanf("%d %d",&n, &nReq);
 	
-	arq1 = init_lista(n);
-	arq2 = init_lista(n);
-	arq3 = init_lista(n);
+	arq[0] = init_lista(n);
+	arq[1] = init_lista(n);
+	arq[2] = init_lista(n);
 
 	for(i=0; i<nReq; i++)
 	{
 		scanf("%d",&req);
 		
-		mtf_count += mtf(req,n,&arq1);
-		tr_count += tr(req,n,&arq2);
-		fc_count += fc(req,n,&arq3);
+		mtf_count += mtf(req,n,&arq[0]);
+		tr_count += tr(req,n,&arq[1]);
+		fc_count += fc(req,n,&arq[2]);
 	}
 	
 	printf("%d %d %d\n",mtf_count, tr_count, fc_count);
 	
-	desaloca_lista(arq1);
-	desaloca_lista(arq2);
-	desaloca_lista(arq3);
+	desaloca_lista(arq[0]);
+	desaloca_lista(arq[1]);
+	desaloca_lista(arq[2]);
 	
 	return 0;
 }
