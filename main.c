@@ -9,12 +9,13 @@
 int main()
 {
 	int n, i, nReq, req, fc_count, tr_count, mtf_count;
-	lista *arq[3];
+	lista *arq[3], *atual;
 	
 	fc_count = tr_count = mtf_count = 0;
 	
 	scanf("%d %d",&n, &nReq);
 	
+	/*cria tres listas para serem manipuladas*/
 	arq[0] = init_lista(n);
 	arq[1] = init_lista(n);
 	arq[2] = init_lista(n);
@@ -30,9 +31,10 @@ int main()
 	
 	printf("%d %d %d\n",mtf_count, tr_count, fc_count);
 	
-	desaloca_lista(arq[0]);
-	desaloca_lista(arq[1]);
-	desaloca_lista(arq[2]);
+	/*desaloca a memoria alococada pelo programa*/
+	desaloca_lista(&arq[0]);
+	desaloca_lista(&arq[1]);
+	desaloca_lista(&arq[2]);
 	
 	return 0;
 }

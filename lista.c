@@ -14,6 +14,14 @@ int mtf(int req, int n, lista **init)
 	lista *ant;
 	lista *atual = *init;
 	
+	/*printf("MTF\n");*/
+	
+	if(req > n)
+		return n;
+		
+	if(req < 1)
+		return 0;
+	
 	/*Requisicao eh o primeiro elemento*/
 	if(atual->arq == req)
 		return 1;
@@ -38,6 +46,14 @@ int tr(int req, int n, lista **init)
 	lista *ant = *init;
 	lista *atual = *init;
 	lista *aux;
+	
+	/*printf("TR\n");*/
+	
+	if(req > n)
+		return n;
+	
+	if(req < 1)
+		return 0;
 	
 	/*Requisicao eh o primeiro elemento*/
 	if(atual->arq == req)
@@ -74,6 +90,14 @@ int fc(int req, int n, lista **init)
 	lista *atual = *init;
 	lista *aux;
 	
+	/*printf("FC\n");*/
+	
+	if(req > n)
+		return n;
+		
+	if(req < 1)
+		return 0;
+	
 	/*Requisicao eh o primeiro elemento*/
 	if(atual->arq == req)
 	{
@@ -89,15 +113,17 @@ int fc(int req, int n, lista **init)
 	cont = atual->cont;
 	atualreq = atual;
 	
-	for(j=1, atual = *init; atual->cont > cont && atual != NULL; j++, atual = atual->prox)
+	for(j=1, atual = *init; atual != NULL && atual->cont > cont; j++, atual = atual->prox)
 		ant2 = atual;
 	
+	/*se for o primeiro tem que modificar o primeiro ponteiro lista*/
 	if(j == 1)
 	{
 		ant1->prox = atualreq->prox;
 		atualreq->prox = *init;
 		*init = atualreq;
 	}
+	else if(j == n) return i; /*se for o ultimo nao tem mais oque fazer*/
 	else
 	{
 		aux = ant2->prox;
@@ -105,9 +131,6 @@ int fc(int req, int n, lista **init)
 		atual->prox = aux;
 	}
 	
-	/*1 2 3 4 5
-	0 0 0 0 0
-	4 1 2 3 5*/
 	
 	return i;
 }
@@ -134,13 +157,15 @@ lista *init_lista(int n)
 	return first;
 }
 
-void desaloca_lista(lista *init)
+void desaloca_lista(lista **init)
 {
-	lista *p = init;
+	lista *p = *init;
+	lista *aux;
 	
 	while(p != NULL)
 	{
+		aux = p;
 		p = p->prox;
-		free(p);
+		free(aux);
 	}
 }

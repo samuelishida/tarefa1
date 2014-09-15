@@ -27,4 +27,4 @@ int fc(int req, int n, lista **init);
 
 /*Retorna o ponteiro do primeiro elemento de uma lista de N elementos indo de 1 a N*/
 lista *init_lista(int n);
-void desaloca_lista(lista *init);
+void desaloca_lista(lista **init);
