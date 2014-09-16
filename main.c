@@ -25,7 +25,9 @@ int main()
 		scanf("%d",&req);
 		
 		mtf_count += mtf(req,n,&arq[0]);
+		
 		tr_count += tr(req,n,&arq[1]);
+		
 		fc_count += fc(req,n,&arq[2]);
 	}
 	
