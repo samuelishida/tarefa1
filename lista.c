@@ -138,6 +138,7 @@ int fc(int req, int n, lista **init)
 			antReq->prox = reqArq->prox;
 			ant2->prox = reqArq;
 			reqArq->prox = atual;
+			i--;
 		}
 	}
 	else if(atual->arq == antReq->arq)
@@ -146,9 +147,8 @@ int fc(int req, int n, lista **init)
 		ant2->prox = reqArq;
 		reqArq->prox = antReq;
 		antReq->prox = aux;
-		printf("yo");
 	}
-	else if(ant2->cont > reqArq->cont && reqArq->cont > reqArq->prox->cont) printf("yolo\n");
+	else if(ant2->cont > reqArq->cont && reqArq->cont > reqArq->prox->cont);
 	else
 	{
 		aux = ant2->prox;
@@ -156,8 +156,6 @@ int fc(int req, int n, lista **init)
 		ant2->prox = reqArq;
 		reqArq->prox = aux;
 	}
-	
-	
 
 	return i;
 }
