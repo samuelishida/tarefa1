@@ -9,7 +9,7 @@
 int main()
 {
 	int n, i, nReq, req, fc_count, tr_count, mtf_count;
-	lista *arq[3];
+	lista *arq[3], *atual;
 	
 	fc_count = tr_count = mtf_count = 0;
 	

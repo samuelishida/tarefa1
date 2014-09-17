@@ -45,6 +45,7 @@ int tr(int req, int n, lista **init)
 	lista *atual = *init;
 	lista *aux;
 	
+	
 	if(req > n)
 		return n;
 	
@@ -58,6 +59,7 @@ int tr(int req, int n, lista **init)
 	/*procura o elemento anteriror ao requisitado*/
 	for(i=2; atual->prox->arq != req && atual != NULL; i++, atual = atual->prox)
 		ant = atual;
+	
 		
 	if(i == 2)
 	{
@@ -80,11 +82,16 @@ int tr(int req, int n, lista **init)
 
 int fc(int req, int n, lista **init)
 {
-	int i, j, cont;
-	lista *ant2, *atualreq;
-	lista *ant1 = *init;
-	lista *atual = *init;
-	lista *aux;
+	int i, j;
+	lista *ant2, *reqArq, *antReq, *atual, *aux;
+	
+	for(aux = *init; aux != NULL; aux = aux->prox)
+		printf("%d ",aux->arq);
+	printf("\n");
+	
+	for(aux = *init; aux != NULL; aux = aux->prox)
+		printf("%d ",aux->cont);
+	printf("\n");
 	
 	if(req > n)
 		return n;
@@ -93,39 +100,65 @@ int fc(int req, int n, lista **init)
 		return n;
 	
 	/*Requisicao eh o primeiro elemento*/
-	if(atual->arq == req)
+	if((*init)->arq == req)
 	{
-		atual->cont++;
+		(*init)->cont++;
 		return 1;
 	}
 		
 	/*procura o elemento anteriror ao requisitado*/
-	for(i=1; atual != NULL && atual->arq != req; i++, atual = atual->prox)
-		ant1 = atual;
+	for(i=1, atual = *init; atual != NULL && atual->arq != req; i++, atual = atual->prox)
+		antReq = atual;
 	
 	atual->cont++;
-	cont = atual->cont;
-	atualreq = atual;
+	reqArq = atual;
 	
-	for(j=1, atual = *init; atual != NULL && atual->cont > cont; j++, atual = atual->prox)
+	for(j=1, atual = *init; atual != NULL && atual->cont > reqArq->cont; atual = atual->prox, j++)
 		ant2 = atual;
+		
+	printf("req %d\n",req);
 	
-	/*se for o primeiro tem que modificar o primeiro ponteiro lista*/
+	printf("ant2->arq %d \n",ant2->arq);
+	printf("atual->arq %d \n",atual->arq);
+	printf("reqArq->arq %d \n",reqArq->arq);
+	printf("antReq->arq %d \n",antReq->arq);
+	printf("j %d i %d\n\n\n",j,i);
+	
 	if(j == 1)
 	{
-		ant1->prox = atualreq->prox;
-		atualreq->prox = *init;
-		*init = atualreq;
+		antReq->prox = reqArq->prox;
+		aux = *init;
+		*init = reqArq;
+		reqArq->prox = aux;
 	}
-	else if(j == n) return i; /*se for o ultimo nao tem mais o que fazer*/
+	else if(reqArq->prox == NULL )
+	{
+		if(antReq->cont < reqArq->cont)
+		{
+			antReq->prox = reqArq->prox;
+			ant2->prox = reqArq;
+			reqArq->prox = atual;
+		}
+	}
+	else if(atual->arq == antReq->arq)
+	{
+		aux = reqArq->prox;
+		ant2->prox = reqArq;
+		reqArq->prox = antReq;
+		antReq->prox = aux;
+		printf("yo");
+	}
+	else if(ant2->cont > reqArq->cont && reqArq->cont > reqArq->prox->cont) printf("yolo\n");
 	else
 	{
-		ant2->prox = atual->prox;
-		aux = atual->prox->prox;
-		ant2->prox->prox = atual;
-		atual->prox = aux;
+		aux = ant2->prox;
+		antReq->prox = reqArq->prox;
+		ant2->prox = reqArq;
+		reqArq->prox = aux;
 	}
 	
+	
+
 	return i;
 }
 
